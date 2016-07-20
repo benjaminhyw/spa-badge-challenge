@@ -6,7 +6,7 @@ class StudentsController < ApplicationController
 
   def show
     @name = Student.find_by(name: params[:name])
-    render json: @name
+    render json: @name.badges
   end
 
 end
