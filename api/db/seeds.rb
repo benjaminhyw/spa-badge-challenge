@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-student_names = ["Abid Ramay", "Benjamin R Flores", "Chris Otto", "Christel Trutman", "Christopher Wong", "David Ramirez", "Ed Mechem", "Ted 'SF' Day-Fratto", "Jonathan Hall", "Justin Wong", "Marshall Agharanya", "Maxwell Workman", "Michael Furlong", "Michael Moore", "Mikael Teklehaimanot", "Paul Haney", "Samuel Heinz"]
+Student.destroy_all
+Badge.destroy_all
+
+student_names = ["Abid", "Ben", "ChrisO", "Christel", "ChrisW", "David", "Ed", "TedSF", "Jonathan", "Justin", "Marshall", "Maxwell", "Michael", "Mikey", "Mikael", "Paul", "Sam"]
 
 badge = "DBC Grad"
 student_ids = []
