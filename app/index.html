@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="css/main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="js/app.js"></script>
-  <title>SPABadge</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/handlebars.js/4.0.5/handlebars.js"></script>
+<script src="js/app.js"></script>
+<title>SPABadge</title>
 </head>
 <body>
   <div class="container">
     <div class="logo">
       <h1> SPA Badge </h1>
     </div>
-    <h1> SF Teachers </h1>
-      <ul id="teacher-list">
-        <li><a href="#" id="this needs to be id of the teacher">Walker</a></li>
-        <li><a href="sample-page.html" id="sample-badge">Sample Page (to see what the badges view should look like)</a></li>
-      </ul>
-  </div>
+    <h1 id="teacher-list"> SF Teachers </h1>
+    <div id="main">
+
+    </div>
+    <ul>
+      <script id="teachers_template" type='text/x-handlebars-template'>
+
+        {{#each data}}
+        <li class="teacher" id="{{id}}"><a id="badges" href="#">{{name}}</a></li>
+        {{/each}}
+      </script>
+    </ul>
+    <script id="badges_template" type='text/x-handlebars-template'>
+     {{#each data}}
+     <li id="{{id}}">
+      Phrase: {{phrase}}, Votes: {{votes}}
+      <form action="#">
+        <input type="hidden" name="vote_type" value="up">
+        <button class="up" type="submit" name="submit">
+          <img src="img/upvote.gif" alt="upvote_image" />
+        </button>
+      </form>
+      <form action="#">
+        <input type="hidden" name="vote_type" value="down">
+        <button class="down" type="submit" name="submit">
+          <img src="img/downvote.gif" alt="downvote_image" />
+        </button>
+      </form>
+    </li>
+    {{/each}}
+  </script>
+</div>
 </body>
 </html>
+<!-- <script type="x/handlerbardjskdfhasfj">
+{{#each data}}
+  {{id}}
+{{/each}}
+
+</script> -->
