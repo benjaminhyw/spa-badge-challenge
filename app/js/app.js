@@ -55,9 +55,10 @@ $('body').on('click', '#badges', function(event) {
 };
 
 function vote() {
-$('.slogan').on('click', 'button', function(event) {
+$('.test').on('click', 'button', function(event) {
   event.preventDefault();
-  var currentBadgeID = $(this).closest('div').parent().attr('id');
+  var currentBadgeID = $(this).attr('class').value()
+  console.log(currentBadgeID)
   var voteType = $(this).attr('class');
   var voteData = '{"vote": {"id": "' + currentBadgeID + '", "vote_type": "' + voteType + '"}}'
   console.log(voteData);

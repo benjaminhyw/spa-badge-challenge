@@ -27,18 +27,6 @@
      {{#each data}}
      <li id="{{id}}">
       Phrase: {{phrase}}, Votes: {{votes}}
-      <form action="#">
-        <input type="hidden" name="vote_type" value="up">
-        <button class="up" type="submit" name="submit">
-          <img src="img/upvote.gif" alt="upvote_image" />
-        </button>
-      </form>
-      <form action="#">
-        <input type="hidden" name="vote_type" value="down">
-        <button class="down" type="submit" name="submit">
-          <img src="img/downvote.gif" alt="downvote_image" />
-        </button>
-      </form>
     </li>
     {{/each}}
   </script>
