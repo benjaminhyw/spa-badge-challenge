@@ -27,7 +27,7 @@ class BadgesController < ApplicationController
 
   private
     def find_student
-      @student = Student.find_by(name: params[:name])
+      @student = Student.find_by(id: params[:id])
     end
 
     def badge_params
