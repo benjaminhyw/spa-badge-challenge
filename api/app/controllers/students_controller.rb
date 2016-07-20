@@ -5,8 +5,8 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @name = Student.find_by(name: params[:name])
-    render json: @name.badges
+    @id = Student.find_by(id: params[:id])
+    render json: @id
   end
 
 end

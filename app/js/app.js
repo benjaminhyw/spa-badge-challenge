@@ -1,75 +1,100 @@
 $(document).ready( function() {
 // INDEX
+getStudents();
+getStudent();
+// vote();
+// addBadge();
 
-function getTeachers() {
-$('body').on('click', '#teacher-list', function(event) {
+function studentsTemplate(response){
+  var studentsTemplateScript = $("#students_template").html();
+  var studentsTemplate = Handlebars.compile(studentsTemplateScript);
+  var context = {
+    data: response
+  }
+  var render = studentsTemplate(context);
+    $('#main').html(render);
+}
+
+function getStudents() {
+  $('body').on('click', '#student-list', function(event) {
+    event.preventDefault();
+    $.ajax({
+      method: "GET",
+      url: "http://www.localhost:3000/students",
+      dataType: "json"
+    }).done(function(response){
+      console.log(response);
+      studentsTemplate(response);
+    });
+  });
+};
+
+function studentsBadgesTemplate(response){
+  var studentsBadgesTemplateScript = $("#badges_template").html();
+  var studentsBadgesTemplate = Handlebars.compile(studentsBadgesTemplateScript);
+  var context = {
+    data: response
+  }
+  var render = studentsBadgesTemplate(context);
+    $('#main').html(render);
+}
+
+function getStudent() {
+$('body').on('click', '#badges', function(event) {
   event.preventDefault();
+  var studentID = $(this).closest("li").attr('id');
   $.ajax({
     method: "GET",
-    url: "http://sample-badges-api.herokuapp.com/teachers",
+    url: "http://www.localhost:3000/students/" + studentID,
     dataType: "json"
   }).done(function(response){
     console.log(response);
-    // use template to format and display or something?
+    studentsBadgesTemplate(response)
   });
 });
 };
 
-function getTeacher() {
-$('body').on('click', '#teacher', function(event) {
-  event.preventDefault();
-  var teacherID = $(this).attr('id');
-  $.ajax({
-    method: "GET",
-    url: "http://sample-badges-api.herokuapp.com/teachers/" + teacherID,
-    dataType: "json"
-  }).done(function(response){
-    console.log(response);
-    // use template to format and display or something?
-  });
-});
-};
+// function vote() {
+// $('.test').on('click', 'button', function(event) {
+//   event.preventDefault();
+//   var currentBadgeID = $(this).attr('class').value()
+//   console.log(currentBadgeID)
+//   var voteType = $(this).attr('class');
+//   var voteData = '{"vote": {"id": "' + currentBadgeID + '", "vote_type": "' + voteType + '"}}'
+//   console.log(voteData);
+//   $.ajax({
+//     method: "PUT",
+//     url: "http://www.localhost:3000/badges/" + currentBadgeID,
+//     data: voteData,
+//     dataType: "json"
+//   }).done(function(response){
+//     console.log(response);
+//     // should get success back here
+//   });
+// });
+// };
 
-// SAMPLE PAGE
+// function addBadge() {
+// $('.add-badge').on('click', 'input[type="image"]', function(event) {
+//   event.preventDefault();
+//   var currentBadgeID = $(this).closest('div').parent().attr('id');
+//   var voteType = $(this).attr('class');
 
-
-function vote() {
-$('.slogan').on('click', 'button', function(event) {
-  event.preventDefault();
-  var currentBadgeID = $(this).closest('div').parent().attr('id');
-  var voteType = $(this).attr('class');
-  var voteData = '{"vote": {"id": "' + badgeID + '", "vote_type": "' + voteType + '"}}'
-  console.log(voteData);
-  $.ajax({
-    method: "PUT",
-    url: "http://sample-badges-api.herokuapp.com/badges/" + currentBadgeID,
-    data: voteData,
-    dataType: "json"
-  }).done(function(response){
-    console.log(response);
-    // should get success back here
-  });
-});
-};
-
-function addBadge() {
-$('.add-badge').on('click', 'input[type="image"]', function(event) {
-  event.preventDefault();
-  var badgeData = $(this).closest('form').serialize();
-  // var badgeData = '{"badge": {"phrase": "' + currentBadgeID + '", "vote_type": "' + voteType + '"}}'
-  // we'll iterate on this tomorrow
-  var badgeData = JSON.stringify(badgeData);
-  $.ajax({
-    method: "POST",
-    url: "http://sample-badges-api.herokuapp.com/badges"
-    data: badgeData,
-    dataType: "json"
-  }).done(function(response){
-    console.log(response);
-    // this needs to add the badge to the "owner's page"
-  });
-});
-};
+//   // var badgeData = $(this).closest('form').serialize();
+//   var badgeData = '{"badge": {"phrase": "' + currentBadgeID + '", "vote_type": "' + voteType + '"}}'
+//   // we'll iterate on this tomorrow
+//   // var badgeData = JSON.stringify(badgeData);
+//   $.ajax({
+//     method: "POST",
+//     url: "http://www.localhost:3000/badges",
+//     data: badgeData,
+//     dataType: "json"
+//   }).done(function(response){
+//     console.log(response);
+//     // this needs to add the badge to the "owner's page"
+//   });
+// });
+// };
 
 });
 
