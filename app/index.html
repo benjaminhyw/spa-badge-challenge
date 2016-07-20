@@ -11,22 +11,22 @@
     <div class="logo">
       <h1> SPA Badge </h1>
     </div>
-    <h1 id="teacher-list"> SF Teachers </h1>
+    <h1 id="student-list"> SF Students </h1>
     <div id="main">
 
     </div>
     <ul>
-      <script id="teachers_template" type='text/x-handlebars-template'>
+      <script id="students_template" type='text/x-handlebars-template'>
 
         {{#each data}}
-        <li class="teacher" id="{{id}}"><a id="badges" href="#">{{name}}</a></li>
+        <li class="student" id="{{id}}"><a id="badges" href="#">{{name}}</a></li>
         {{/each}}
       </script>
     </ul>
     <script id="badges_template" type='text/x-handlebars-template'>
      {{#each data}}
      <li id="{{id}}">
-      Phrase: {{phrase}}, Votes: {{votes}}
+      Description: {{description}}, Votes: {{votes}}
     </li>
     {{/each}}
   </script>
